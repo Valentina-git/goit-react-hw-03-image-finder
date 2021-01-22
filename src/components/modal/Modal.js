@@ -19,30 +19,11 @@ const Modal = ({ largeImageUrl, largeImageAlt, onCloseModal }) => {
     window.addEventListener('keydown', onEscDown);
     return () => {
       window.removeEventListener('keydown', onEscDown);
-      return () => {
-        document
-          .querySelector('.Overlay')
-          .removeEventListener('click', onBackdropClick);
-      };
-    };
-  });
-
-  useEffect(() => {
-    document
-      .querySelector('.Overlay')
-      .addEventListener('click', onBackdropClick);
-    return () => {
-      window.removeEventListener('keydown', onEscDown);
-      return () => {
-        document
-          .querySelector('.Overlay')
-          .removeEventListener('click', onBackdropClick);
-      };
     };
   });
 
   return (
-    <WrapperModal className="Overlay">
+    <WrapperModal className="Overlay" onClick={onBackdropClick}>
       <div className="Modal">
         <img src={largeImageUrl} alt={largeImageAlt} />
       </div>
